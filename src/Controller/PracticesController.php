@@ -4,9 +4,9 @@ namespace App\Controller;
 class PracticesController extends AppController
 {
     public $name = 'Practices';
-    public $autoRender = false;
+    public $autoRender = true;
     public function index()
     {
-        echo 'This is a practice of CakePHP.';
+        $this->viewBuilder()->autoLayout(false);
     }
 }
