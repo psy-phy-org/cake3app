@@ -18,7 +18,7 @@ class PracticesController extends AppController
 
     public function sendForm()
     {
-        $str = $this->request->query['text1'];
+        $str = $this->request->data['text1'];
         $result = '';
         if ($str != '') {
             $result = 'you type: '.$str;
