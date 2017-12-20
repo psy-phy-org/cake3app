@@ -12,7 +12,8 @@ class PracticesController extends AppController
 
     public function index()
     {
-        $this->viewBuilder()->autoLayout(true);
-        $this->autoRender = true;
+        $this->set('msg', 'Practices/index');
+        $n = rand(1, 2);
+        $this->set('footer', 'Practices\footer'. $n);
     }
 }

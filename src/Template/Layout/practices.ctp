@@ -17,11 +17,15 @@
 
 <body>
   <div id="container">
-    <div id="header">Header</div>
+    <div id="header">
+      <?= $this->element('Practices\header', ['msg' => $msg]) ?>
+    </div>
     <div id="content">
       <?= $this->fetch('content') ?>
     </div>
-    <div id="footer">copyright &copy; 20xx Anonymous.</div>
+    <div id="footer">
+      <?= $this->element($footer) ?>
+    </div>
   </div>
 </body>
 </html>
