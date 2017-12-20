@@ -1,5 +1,5 @@
 <div class="footer">
   <div style="text-decoration: underline;">
-    copyright &copy; 20x2 Anonymous.
+    copyright &copy; 20xx Anonymous.
   </div>
 </div>

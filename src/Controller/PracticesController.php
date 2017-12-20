@@ -8,12 +8,23 @@ class PracticesController extends AppController
         $this->name = 'Practices';
         $this->viewBuilder()->autoLayout(true);
         $this->viewBuilder()->Layout('Practices');
+        $this->set('msg', 'Practices/index');
+        $this->set('footer', 'Practices\footer');
     }
 
     public function index()
     {
-        $this->set('msg', 'Practices/index');
-        $n = rand(1, 2);
-        $this->set('footer', 'Practices\footer'. $n);
+    }
+
+    public function sendForm()
+    {
+        $str = $this->request->query['text1'];
+        $result = '';
+        if ($str != '') {
+            $result = 'you type: '.$str;
+        } else {
+            $result = 'empty.';
+        }
+        $this->set('result', h($result));
     }
 }
