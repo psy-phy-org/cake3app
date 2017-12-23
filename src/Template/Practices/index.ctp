@@ -18,7 +18,7 @@
       ['text' => 'Linux', 'value' => 'Linux', 'selected' => 'true'],
       ['text' => 'MacOS', 'value' => 'MacOS']
     ],
-    ['size' => 4, 'empty' => '項目を選んでください。']
+    ['size' => 4, 'multiple' => true, 'empty' => '項目を選んでください。']
 ) ?>
 <?= $this->Form->submit('送信') ?>
 <?= $this->Form->end() ?>
