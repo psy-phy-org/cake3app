@@ -15,16 +15,9 @@ class PracticesController extends AppController
     {
         $result = '';
         if ($this->request->is('post')) {
-            $result = '送信された情報: ';
-            foreach ($this->request->data['PracticesForm'] as $key => $val) {
-                $v_str = '';
-                foreach ($val as $v) {
-                    $v_str .= $v.' ';
-                }
-                $result .= $key.'=>'.$v_str;
-            }
+            $result = $this->request->data['PracticesForm']['date'];
         } else {
-            $result ='なにか選択して送信してください。';
+            $result ='日時を選択して送信してください。';
         }
         $this->set('result', h($result));
     }
