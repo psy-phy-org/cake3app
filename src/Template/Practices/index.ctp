@@ -14,11 +14,18 @@
 <?= $this->Form->select(
     'PracticesForm.select1',
     [
-      ['text' => 'Windows', 'value' => 'Windows'],
-      ['text' => 'Linux', 'value' => 'Linux', 'selected' => 'true'],
-      ['text' => 'MacOS', 'value' => 'MacOS']
+      'PC' => [
+        ['text' => 'Windows', 'value' => 'Windows'],
+        ['text' => 'Linux', 'value' => 'Linux'],
+        ['text' => 'MacOS', 'value' => 'MacOS']
+      ],
+      'mobile' => [
+        ['text' => 'Android', 'value' => 'Android'],
+        ['text' => 'iPhone', 'value' => 'iPhone'],
+        ['text' => 'cellphone', 'value' => 'cellphone']
+      ]
     ],
-    ['size' => 4, 'multiple' => true, 'empty' => '項目を選んでください。']
+    ['size' => 10, 'multiple' => true, 'empty' => '項目を選んでください。']
 ) ?>
 <?= $this->Form->submit('送信') ?>
 <?= $this->Form->end() ?>
