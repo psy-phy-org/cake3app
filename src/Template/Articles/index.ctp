@@ -9,13 +9,16 @@
   </tr>
 </thead>
 <tbody>
-<?php foreach ($data as $obj): ?>
-  <tr>
-    <td><?= $obj->id ?></td>
-    <td><?= $obj->name ?></td>
-    <td><?= $obj->title ?></td>
-    <td><?= $obj->content ?></td>
-  </tr>
-<?php endforeach; ?>
+<?php
+$arr = $data->toArray();
+for ($i=0; $i<count($arr); $i++) {
+    echo $this->Html->tableCells(
+        $arr[$i]->toArray(),
+        ['style' => 'background-color: #f0f0f0'],
+        ['style' => 'font-weight: bold'],
+        true
+    );
+}
+?>
 </tbody>
 </table>
