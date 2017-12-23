@@ -1,7 +1,16 @@
 <h1>Practice</h1>
 <p>This is a practice of CakePHP.</p>
 <p>フォームの送信</p>
-<form method="post" action="practices/sendForm">
-  <input type="text" name="text1">
-  <input type="submit">
-</form>
+<p>
+<?= $result ?>
+</p>
+<?= $this->Form->create(
+    null,
+    [
+      'type' => 'post',
+      'url' => ['action' => 'index']
+    ]
+) ?>
+<?= $this->Form->text('PracticesForm.text1') ?>
+<?= $this->Form->submit('送信') ?>
+<?= $this->Form->end() ?>

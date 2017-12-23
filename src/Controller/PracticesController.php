@@ -6,7 +6,6 @@ class PracticesController extends AppController
     public function initialize()
     {
         $this->name = 'Practices';
-        $this->viewBuilder()->autoLayout(true);
         $this->viewBuilder()->Layout('Practices');
         $this->set('msg', 'Practices/index');
         $this->set('footer', 'Practices\footer');
@@ -14,16 +13,14 @@ class PracticesController extends AppController
 
     public function index()
     {
-    }
-
-    public function sendForm()
-    {
-        $str = $this->request->data['text1'];
         $result = '';
-        if ($str != '') {
-            $result = 'you type: '.$str;
+        if ($this->request->is('post')) {
+            $result = '送信された情報: ';
+            foreach ($this->request->data['PracticesForm'] as $key => $val) {
+                $result .= $key.'=>'.$val;
+            }
         } else {
-            $result = 'empty.';
+            $result ='なにか書いて送信してください。';
         }
         $this->set('result', h($result));
     }
