@@ -20,7 +20,7 @@ class PracticesController extends AppController
                 $result .= $key.'=>'.$val;
             }
         } else {
-            $result ='なにか書いて送信してください。';
+            $result ='なにか選択して送信してください。';
         }
         $this->set('result', h($result));
     }

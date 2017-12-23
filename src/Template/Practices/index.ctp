@@ -11,6 +11,13 @@
       'url' => ['action' => 'index']
     ]
 ) ?>
-<?= $this->Form->text('PracticesForm.text1') ?>
+<?= $this->Form->checkbox(
+    'PracticesForm.check1',
+    [
+      'value' => 'OK',
+      'checked' => true
+    ]
+) ?>
+<?= $this->Form->label('PracticesForm.check1') ?>
 <?= $this->Form->submit('送信') ?>
 <?= $this->Form->end() ?>
