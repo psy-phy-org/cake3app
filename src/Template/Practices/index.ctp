@@ -11,13 +11,14 @@
       'url' => ['action' => 'index']
     ]
 ) ?>
-<?= $this->Form->checkbox(
-    'PracticesForm.check1',
+<?= $this->Form->radio(
+    'PracticesForm.radio1',
     [
-      'value' => 'OK',
-      'checked' => true
-    ]
+      ['text' => 'Windows', 'value' => 'Windows'],
+      ['text' => 'Linux', 'value' => 'Linux'],
+      ['text' => 'MacOS', 'value' => 'MacOS']
+    ],
+    ['label' => true, 'value' => 'Linux']
 ) ?>
-<?= $this->Form->label('PracticesForm.check1') ?>
 <?= $this->Form->submit('送信') ?>
 <?= $this->Form->end() ?>
