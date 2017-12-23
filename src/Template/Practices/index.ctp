@@ -11,14 +11,14 @@
       'url' => ['action' => 'index']
     ]
 ) ?>
-<?= $this->Form->radio(
-    'PracticesForm.radio1',
+<?= $this->Form->select(
+    'PracticesForm.select1',
     [
       ['text' => 'Windows', 'value' => 'Windows'],
-      ['text' => 'Linux', 'value' => 'Linux'],
+      ['text' => 'Linux', 'value' => 'Linux', 'selected' => 'true'],
       ['text' => 'MacOS', 'value' => 'MacOS']
     ],
-    ['label' => true, 'value' => 'Linux']
+    ['size' => 4, 'empty' => '項目を選んでください。']
 ) ?>
 <?= $this->Form->submit('送信') ?>
 <?= $this->Form->end() ?>
