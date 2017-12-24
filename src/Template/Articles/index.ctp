@@ -1,7 +1,7 @@
 <h1>Articles</h1>
 <?= $this->Form->create($entity) ?>
 <fieldset>
-<?= $this->Form->label('input', '名前') ?>
+<?= $this->Form->label('input', 'ID') ?>
 <?= $this->Form->text('input') ?>
 </fieldset>
 <?= $this->Form->button('送信') ?>
