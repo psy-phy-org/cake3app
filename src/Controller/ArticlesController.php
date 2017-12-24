@@ -9,7 +9,8 @@ class ArticlesController extends AppController
     {
         $this->set('entity', $this->Articles->newEntity());
         if ($this->request->is('post')) {
-            $data = $this->Articles->findById($this->request->data['id']);
+            $id = $this->request->data['id'];
+            $data = $this->Articles->findByIdOrName($id, $id);
         } else {
             $data = $this->Articles->find('all');
         }
