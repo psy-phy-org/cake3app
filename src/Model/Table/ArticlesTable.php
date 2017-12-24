@@ -2,11 +2,19 @@
 namespace App\Model\Table;
 
 use Cake\ORM\Table;
+use Cake\Event\Event;
 
 class ArticlesTable extends Table
 {
-    public static function defaultConnectionName()
+    public $qdata = 'unll';
+
+    public function beforeFind(Event $event)
     {
-        return 'default2';
+        $qstr = '';
+        for ($i=0; $i<count($event->data); $i++) {
+            $query = $event->data[0];
+            $qstr = $query->sql()."<br>\n";
+        }
+        $this->qdata = $qstr;
     }
 }
