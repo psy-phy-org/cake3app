@@ -9,14 +9,10 @@ class ArticlesController extends AppController
     {
         $this->set('entity', $this->Articles->newEntity());
         if ($this->request->is('post')) {
-            $data = $this->Articles->find(
-                'all',
-                ['conditions' => ['name like' => "%{$this->request->data['name']}%"]]
-            );
+            $data = $this->Articles->findById($this->request->data['id']);
         } else {
             $data = $this->Articles->find('all');
         }
-        $data->order(['name' => 'ASC', 'id' => 'DESC']);
         $this->set('data', $data->toArray());
         $this->set('count', $data->count());
     }
