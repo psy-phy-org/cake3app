@@ -7,8 +7,7 @@ class ArticlesController extends AppController
 {
     public function index($id = null)
     {
-        $data = $this->Articles->find('all');
-        $this->set('data', $data->toArray());
-        $this->set('count', $data->count());
+        $data = $this->Articles->get('hanako');
+        $this->set('data', $data);
     }
 }

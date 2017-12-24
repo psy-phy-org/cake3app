@@ -9,8 +9,6 @@ class ArticlesTable extends Table
     {
         parent::initialize($config);
 
-        // テーブルクラスが BlogPostsTable という名前の場合テーブルオブジェクトは、
-        // クラス名を小文字とアンダースコアー区切りにした blog_posts と名付ける。
-        $this->setTable('books');
+        $this->primaryKey('name');
     }
 }
