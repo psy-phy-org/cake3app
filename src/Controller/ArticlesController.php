@@ -11,7 +11,7 @@ class ArticlesController extends AppController
         if ($this->request->is('post')) {
             $data = $this->Articles->find(
                 'all',
-                ['conditions' => ['id' => $this->request->data['id']]]
+                ['conditions' => ['name like' => "%{$this->request->data['name']}%"]]
             );
         } else {
             $data = $this->Articles->find('all');
