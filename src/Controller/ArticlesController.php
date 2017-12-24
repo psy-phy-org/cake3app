@@ -12,8 +12,9 @@ class ArticlesController extends AppController
             $input = $this->request->data['input'];
             $data = $this->Articles
                 ->find()
-                ->where(['name like' => '%'.$input.'%'])
-                ->select(['name', 'title']);
+                ->where(function ($exp, $q) use ($input) {
+                    return $exp->eq('id', $input);
+                });
         }
         $this->set('data', $data);
         $this->set('entity', $this->Articles->newEntity());
