@@ -12,7 +12,7 @@
 <table>
 <?php foreach ($data as $obj): ?>
   <tr>
-    <td><?= $obj->id.$obj->name.'('.$obj->title.')'.$obj->content ?></td>
+    <td><?php print_r($obj) ?></td>
   </tr>
 <?php endforeach; ?>
 </table>

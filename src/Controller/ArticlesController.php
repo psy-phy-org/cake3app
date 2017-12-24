@@ -2,19 +2,26 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Datasource\ConnectionManager;
 
 class ArticlesController extends AppController
 {
     public function index($id = null)
     {
-        $data = $this->Articles->find();
-        if ($this->request->is('post')) {
+        if (!$this->request->is('post')) {
+            $connection = ConnectionManager::get('default');
+            $data = $connection
+                ->execute('SELECT * FROM articles')
+                ->fetchAll('assoc');
+        } else {
             $input = $this->request->data['input'];
-            $data = $this->Articles
-                ->find()
-                ->where(function ($exp, $q) use ($input) {
-                    return $exp->eq('id', $input);
-                });
+            $connection = ConnectionManager::get('default');
+            $data = $connection
+                ->execute(
+                    'SELECT * FROM articles where id = :id',
+                    ['id' => $input]
+                )
+                ->fetchAll('assoc');
         }
         $this->set('data', $data);
         $this->set('entity', $this->Articles->newEntity());
