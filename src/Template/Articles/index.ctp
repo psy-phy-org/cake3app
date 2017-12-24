@@ -1,10 +1,10 @@
 <h1>Articles</h1>
 <?= $this->Form->create($entity, ['url' => ['action' => 'editRecord']]) ?>
 <fieldset>
-<p><?= 'ID = '.$entity->id ?></p>
-<?= $this->Form->hidden('id') ?>
-<?= $this->Form->label('content', '内容') ?>
-<?= $this->Form->textarea('content') ?>
+<?= $this->Form->label('name', '名前') ?>
+<?= $this->Form->text('name') ?>
+<?= $this->Form->label('title', 'タイトル') ?>
+<?= $this->Form->text('title') ?>
 </fieldset>
 <?= $this->Form->button('送信') ?>
 <?= $this->Form->end() ?>

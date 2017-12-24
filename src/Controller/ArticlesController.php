@@ -3,7 +3,6 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use \Exception;
-use Cake\Log\Log;
 
 class ArticlesController extends AppController
 {
@@ -25,14 +24,10 @@ class ArticlesController extends AppController
 
     public function editRecord()
     {
-        if ($this->request->is('put')) {
-            try {
-                $entity = $this->Articles->get($this->request->data['id']);
-                $entity->content = $this->request->data['content'];
-                $this->Articles->save($entity);
-            } catch (Exception $e) {
-                Log:write('debug', $e->getMessage());
-            }
+        if ($this->request->is('post')) {
+            $arr1 = ['name' => $this->request->data['name']];
+            $arr2 = ['title' => $this->request->data['title']];
+            $this->Articles->updateAll($arr2, $arr1);
         }
         return $this->redirect(['action' => 'index']);
     }
