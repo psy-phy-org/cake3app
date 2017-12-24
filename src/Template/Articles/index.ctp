@@ -3,10 +3,6 @@
 <fieldset>
 <p><?= 'ID = '.$entity->id ?></p>
 <?= $this->Form->hidden('id') ?>
-<?= $this->Form->label('name', '名前') ?>
-<?= $this->Form->text('name') ?>
-<?= $this->Form->label('title', 'タイトル') ?>
-<?= $this->Form->text('title') ?>
 <?= $this->Form->label('content', '内容') ?>
 <?= $this->Form->textarea('content') ?>
 </fieldset>

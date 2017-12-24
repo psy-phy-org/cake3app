@@ -28,7 +28,7 @@ class ArticlesController extends AppController
         if ($this->request->is('put')) {
             try {
                 $entity = $this->Articles->get($this->request->data['id']);
-                $this->Articles->patchEntity($entity, $this->request->data);
+                $entity->content = $this->request->data['content'];
                 $this->Articles->save($entity);
             } catch (Exception $e) {
                 Log:write('debug', $e->getMessage());
