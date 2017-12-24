@@ -9,6 +9,6 @@ class ArticlesTable extends Table
     {
         parent::initialize($config);
 
-        $this->displayField('title');
+        $this->entityClass('Book');
     }
 }
