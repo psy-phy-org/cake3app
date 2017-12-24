@@ -12,8 +12,9 @@ class ArticlesController extends AppController
             $input = $this->request->data['input'];
             $data = $this->Articles
                 ->find()
-                ->where(['id <=' => $input])
-                ->order(['id' => 'DESC']);
+                ->where(['name like' => '%'.$input.'%'])
+                ->orWhere(['title like' => '%'.$input.'%'])
+                ->orWhere(['content like' => '%'.$input.'%']);
         }
         $this->set('data', $data);
         $this->set('entity', $this->Articles->newEntity());
