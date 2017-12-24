@@ -1,12 +1,8 @@
 <h1>Articles</h1>
-<?= $this->Form->create($entity, ['url' => ['action' => 'addRecord']]) ?>
+<?= $this->Form->create($entity, ['url' => ['action' => 'index']]) ?>
 <fieldset>
-<?= $this->Form->label('name', '名前') ?>
-<?= $this->Form->text('name') ?>
-<?= $this->Form->label('title', 'タイトル') ?>
-<?= $this->Form->text('title') ?>
-<?= $this->Form->label('content', '内容') ?>
-<?= $this->Form->textarea('content') ?>
+<?= $this->Form->label('id', 'ID') ?>
+<?= $this->Form->text('id') ?>
 </fieldset>
 <?= $this->Form->button('送信') ?>
 <?= $this->Form->end() ?>
