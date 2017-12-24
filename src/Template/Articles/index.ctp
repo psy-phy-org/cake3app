@@ -10,9 +10,6 @@
 <hr>
 
 <p>count: <?= $count ?></p>
-<p>first: <?= print_r($first) ?></p>
-<p>min: <?= $min ?></p>
-<p>max: <?= $max ?></p>
 <table>
 <thead>
   <tr>
