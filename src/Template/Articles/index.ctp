@@ -1,8 +1,8 @@
 <h1>Articles</h1>
 <?= $this->Form->create($entity, ['url' => ['action' => 'delRecord']]) ?>
 <fieldset>
-<?= $this->Form->label('id', 'ID') ?>
-<?= $this->Form->text('id') ?>
+<?= $this->Form->label('name', '名前') ?>
+<?= $this->Form->text('name') ?>
 </fieldset>
 <?= $this->Form->button('送信') ?>
 <?= $this->Form->end() ?>
