@@ -16,6 +16,10 @@ class ArticlesController extends AppController
         } else {
             $data = $this->Articles->find('all');
         }
-        $this->set('data', $data);
+        $this->set('data', $data->toArray());
+        $this->set('count', $data->count());
+        $this->set('min', $data->min('id'));
+        $this->set('max', $data->max('id'));
+        $this->set('first', $data->first()->toArray());
     }
 }
