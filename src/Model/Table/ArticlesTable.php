@@ -2,19 +2,16 @@
 namespace App\Model\Table;
 
 use Cake\ORM\Table;
-use Cake\Event\Event;
-use Cake\Datasource\EntityInterface;
+use Cake\Validation\Validator;
 
 class ArticlesTable extends Table
 {
-    public function beforeSave(Event $event, EntityInterface $entity, $options)
+    public function validationDefault(Validator $validator)
     {
-        $n = $this->find('all', ['conditions' => ['name' => $entity->name]])
-            ->count();
-        if ($n == 0) {
-            return true;
-        } else {
-            return false;
-        }
+        $validator->integer('id');
+        $validator->notEmpty('name');
+        $validator->notEmpty('title');
+        $validator->notEmpty('content');
+        return $validator;
     }
 }
