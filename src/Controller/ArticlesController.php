@@ -14,7 +14,7 @@ class ArticlesController extends AppController
     {
         parent::initialize();
         $this->person = TableRegistry::get('Persons');
-        I18n::Locale('en_US');
+        // I18n::Locale('en_US');
     }
 
     public function index()
@@ -24,6 +24,7 @@ class ArticlesController extends AppController
             ->order(['Articles.id' => 'DESC'])
             ->contain(['Persons']);
         $this->set('data', $data);
+        $this->set('count', $data->count());
     }
 
     public function add()

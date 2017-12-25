@@ -54,6 +54,9 @@ msgstr "掲示板"
 msgid "post"
 msgstr "※投稿する"
 
+msgid "{0} post"
+msgstr "{0}個の投稿があります。"
+
 #: Template/Articles/index.ctp:6
 msgid "user"
 msgstr "利用者"

@@ -54,6 +54,9 @@ msgstr "Articles"
 msgid "post"
 msgstr "post"
 
+msgid "{0} post"
+msgstr "post count:{0}"
+
 #: Template/Articles/index.ctp:6
 msgid "user"
 msgstr "user"

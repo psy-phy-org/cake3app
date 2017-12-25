@@ -1,5 +1,6 @@
 <h1><?= __('Articles') ?></h1>
 <p><a href="articles/add"><?= __('post') ?></a></p>
+<p><?= __('{0} post', $count) ?></p>
 <div>
 <table>
 <tr>
