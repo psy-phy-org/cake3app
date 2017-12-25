@@ -3,18 +3,23 @@
 <p><?= __('{0} post', $count) ?></p>
 <div>
 <table>
-<tr>
-<th width="25%"><?= __('user') ?></th><th><?= __('title') ?></th>
-</tr>
+<?= $this->Html->tableHeaders(
+    ['ID', '投稿者', 'タイトル'],
+    ['style' => 'color:#000066; background-color: #AAAAFF'],
+    ['style' => 'color:#000066; background-color: #EEEEFF', 'class'=>'something']
+); ?>
 <?php foreach ($data as $obj): ?>
-  <tr>
-    <td>
-    <?= $this->Html->link($obj['person']['name'], ['action' => 'show2', $obj['person_id']]) ?>
-    </td>
-    <td>
-    <?= $this->Html->link($obj['title'], ['action' => 'show', $obj['id']]) ?>
-    </td>
-  </tr>
+<?= $this->Html->tableCells(
+    [
+        $obj['id'],
+        $this->Html->link($obj['person']['name'], ['action' => 'show2', $obj['person_id']]),
+        $this->Html->link($obj['title'], ['action' => 'show', $obj['id']]),
+    ],
+    ['style' => 'color: #000066; background-color: #CCCCFF'],
+    ['style' => 'color: #006600; background-color: #EEFFEE'],
+    false,
+    true
+) ?>
 <?php endforeach; ?>
 </table>
 </div>

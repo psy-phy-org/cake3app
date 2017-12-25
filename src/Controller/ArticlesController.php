@@ -9,20 +9,24 @@ use Cake\I18n\I18n;
 class ArticlesController extends AppController
 {
     private $person;
+    public $paginate = [
+        'limit' => 5,
+        'order' => [
+            'id' => 'DESC'
+        ],
+        'contain' => ['Persons']
+    ];
 
     public function initialize()
     {
         parent::initialize();
         $this->person = TableRegistry::get('Persons');
-        // I18n::Locale('en_US');
+        $this->loadComponent('Paginator');
     }
 
     public function index()
     {
-        $data = $this->Articles
-            ->find('all')
-            ->order(['Articles.id' => 'DESC'])
-            ->contain(['Persons']);
+        $data = $this->paginate($this->Articles);
         $this->set('data', $data);
         $this->set('count', $data->count());
     }
