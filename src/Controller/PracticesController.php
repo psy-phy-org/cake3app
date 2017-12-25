@@ -11,6 +11,7 @@ class PracticesController extends AppController
 
     public function index()
     {
-        $this->Flash->set('クリックすると消えます。');
+        $this->Flash->success('成功しました！', ['element' => 'flash']);
+        $this->Flash->error('失敗です...', ['element' => 'flash']);
     }
 }
