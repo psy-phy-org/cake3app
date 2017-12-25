@@ -10,7 +10,7 @@ class PersonsTable extends Table
 {
     public function initialize(array $config)
     {
-        $this->hasOne('Articles');
+        $this->hasMany('Articles');
     }
 
     public function validationDefault(Validator $validator)
