@@ -11,6 +11,12 @@ class PracticesController extends AppController
 
     public function index()
     {
-        $this->Flash->info('infoメッセージを表示します。');
+        $this->Flash->set(
+            'メッセージを表示します。',
+            [
+                'element'=>'info',
+                'key'=>'info'
+            ]
+        );
     }
 }
