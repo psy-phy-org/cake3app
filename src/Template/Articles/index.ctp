@@ -36,3 +36,4 @@
   </ul>
 </div>
 <?= $this->RgbText->blueLink('※トップページに戻る', '/') ?></a>
+<?= $this->element('sampleBanner') ?>
