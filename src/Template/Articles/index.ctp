@@ -3,11 +3,11 @@
 <p><?= __('{0} post', $count) ?></p>
 <div>
 <table>
-<?= $this->Html->tableHeaders(
-    ['ID', '投稿者', 'タイトル'],
-    ['style' => 'color:#000066; background-color: #AAAAFF'],
-    ['style' => 'color:#000066; background-color: #EEEEFF', 'class'=>'something']
-); ?>
+<tr>
+  <th><?= $this->Paginator->sort('id', '投稿者') ?></th>
+  <th><?= $this->Paginator->sort('name', '名前') ?></th>
+  <th><?= $this->Paginator->sort('title', 'タイトル') ?></th>
+</tr>
 <?php foreach ($data as $obj): ?>
 <?= $this->Html->tableCells(
     [
