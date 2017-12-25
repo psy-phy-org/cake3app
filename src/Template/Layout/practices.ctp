@@ -13,6 +13,13 @@
   echo $this->fetch('css');
   echo $this->fetch('js');
   ?>
+  <style>
+  span.highlight {
+  color:white;
+  background:blue;
+  font-weight:bold;
+  }
+  </style>
 </head>
 
 <body>
