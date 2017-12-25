@@ -4,6 +4,7 @@ namespace App\Controller;
 use App\Controller\AppController;
 use Cake\ORM\TableRegistry;
 use Cake\Validation\Validator;
+use Cake\I18n\I18n;
 
 class ArticlesController extends AppController
 {
@@ -13,6 +14,7 @@ class ArticlesController extends AppController
     {
         parent::initialize();
         $this->person = TableRegistry::get('Persons');
+        I18n::Locale('en_US');
     }
 
     public function index()
