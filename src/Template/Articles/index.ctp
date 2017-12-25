@@ -1,5 +1,5 @@
-<h1><?= __('Articles') ?></h1>
-<p><a href="articles/add"><?= __('post') ?></a></p>
+<h1><?= $this->RgbText->redString('掲示板') ?></h1>
+<p><a href="articles/add"><?= $this->RgbText->greenString('投稿する') ?></a></p>
 <p><?= __('{0} post', $count) ?></p>
 <div>
 <table>
@@ -35,3 +35,4 @@
   ) ?>
   </ul>
 </div>
+<a href="/cake3app/articles"><?= $this->RgbText->blueString('※トップページに戻る') ?></a>

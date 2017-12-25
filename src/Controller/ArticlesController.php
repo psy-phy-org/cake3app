@@ -22,6 +22,7 @@ class ArticlesController extends AppController
         parent::initialize();
         $this->person = TableRegistry::get('Persons');
         $this->loadComponent('Paginator');
+        $this->loadComponent('RequestHandler');
     }
 
     public function index()
