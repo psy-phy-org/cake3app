@@ -17,50 +17,14 @@ class ArticlesTable extends Table
         $validator
             ->integer('id');
         $validator
-            ->requirePresence('name', 'create')
-            ->notEmpty('name', '必須項目です。')
-            ->add('name', [
-                'minLength' => [
-                    'rule' => ['minLength', 5],
-                    'message' => '5文字以上で入力してください',
-                    'last' => true
-                ],
-                'maxLength' => [
-                    'rule' => ['maxLength', 10],
-                    'message' => '10文字以内で入力してください。'
-                ]
-            ]);
+            ->integer('person_id')
+            ->requirePresence('person_id');
         $validator
-            ->notEmpty('title');
+            ->notEmpty('name', '必須項目です。');
         $validator
-            ->notEmpty('content');
+            ->notEmpty('title', '必須項目です。');
         $validator
-            ->add(
-                'content',
-                'custom',
-                [
-                    'rule'=>['custom', "/\A\d+\z/"],
-                    'message' => '整数を入力してください。'
-                ]
-            );
-        $validator
-            ->add(
-                'name',
-                'maxRecords',
-                [
-                'rule' => ['maxRecords', 'name', 3],
-                'message' => __('最大数を超えています。'),
-                'provider' => 'table',
-                ]
-            );
+            ->notEmpty('content', '必須項目です。');
         return $validator;
-    }
-
-    public function maxRecords($data, $field, $num)
-    {
-        $n = $this->find()
-            ->where([$field => $data])
-            ->count();
-        return $n < $num ? true : false;
     }
 }

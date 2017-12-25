@@ -1,7 +1,6 @@
 <?php
 namespace App\Model\Table;
 
-use Cake\ORM\Query;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 use Cake\ORM\RulesChecker;
@@ -10,7 +9,7 @@ class PersonsTable extends Table
 {
     public function initialize(array $config)
     {
-        // $this->hasMany('Articles');
+        $this->hasMany('Articles');
     }
 
     public function validationDefault(Validator $validator)
@@ -30,5 +29,14 @@ class PersonsTable extends Table
     {
         $rules->isUnique(['name'], '既に登録済みです。');
         return $rules;
+    }
+
+    public function checkNameAndPassword($data)
+    {
+        $n = $this->find()
+            ->where(['name' => $data['name']])
+            ->andWhere(['password' => $data['password']])
+            ->count();
+        return $n > 0 ? true : false;
     }
 }
