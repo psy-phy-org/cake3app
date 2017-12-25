@@ -8,9 +8,10 @@ class ArticlesController extends AppController
 {
     public function index($id = null)
     {
-        $data = $this->Articles->find('all');
+        $data = $this->Articles
+            ->find('all')
+            ->contain(['Persons']);
         $this->set('data', $data);
-        $this->set('entity', $this->Articles->newEntity());
     }
 
     public function addRecord()

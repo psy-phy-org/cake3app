@@ -7,6 +7,11 @@ use Cake\ORM\RulesChecker;
 
 class ArticlesTable extends Table
 {
+    public function initialize(array $config)
+    {
+        $this->belongsTo('Persons');
+    }
+
     public function validationDefault(Validator $validator)
     {
         $validator
