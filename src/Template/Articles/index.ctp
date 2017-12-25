@@ -15,7 +15,9 @@
 <div class="error"><?=$this->Form->error('title') ?></div>
 <?= $this->Form->input('title') ?>
 <div class="error"><?=$this->Form->error('content') ?></div>
-<?= $this->Form->input('content') ?>
+<?= $this->Form->input('content', [
+    'error' => false,
+]) ?>
 </fieldset>
 <?= $this->Form->button('送信') ?>
 <?= $this->Form->end() ?>

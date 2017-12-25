@@ -35,6 +35,15 @@ class ArticlesTable extends Table
             ->notEmpty('title');
         $validator
             ->notEmpty('content');
+        $validator
+            ->add(
+                'content',
+                'custom',
+                [
+                    'rule'=>['custom', "/\A\d+\z/"],
+                    'message' => '整数を入力してください。'
+                ]
+            );
         return $validator;
     }
 }
