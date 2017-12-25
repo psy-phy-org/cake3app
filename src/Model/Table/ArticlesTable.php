@@ -3,9 +3,16 @@ namespace App\Model\Table;
 
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use Cake\ORM\RulesChecker;
 
 class ArticlesTable extends Table
 {
+    public function buildRules(RulesChecker $rules)
+    {
+        $rules->add($rules->isUnique(['name'], '既に登録済みです。'));
+        return $rules;
+    }
+
     public function validationDefault(Validator $validator)
     {
         $validator
