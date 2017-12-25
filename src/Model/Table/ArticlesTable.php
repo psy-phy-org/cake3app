@@ -7,12 +7,6 @@ use Cake\ORM\RulesChecker;
 
 class ArticlesTable extends Table
 {
-    public function buildRules(RulesChecker $rules)
-    {
-        $rules->add($rules->isUnique(['name'], '既に登録済みです。'));
-        return $rules;
-    }
-
     public function validationDefault(Validator $validator)
     {
         $validator
@@ -44,6 +38,24 @@ class ArticlesTable extends Table
                     'message' => '整数を入力してください。'
                 ]
             );
+        $validator
+            ->add(
+                'name',
+                'maxRecords',
+                [
+                'rule' => ['maxRecords', 'name', 3],
+                'message' => __('最大数を超えています。'),
+                'provider' => 'table',
+                ]
+            );
         return $validator;
+    }
+
+    public function maxRecords($data, $field, $num)
+    {
+        $n = $this->find()
+            ->where([$field => $data])
+            ->count();
+        return $n < $num ? true : false;
     }
 }
