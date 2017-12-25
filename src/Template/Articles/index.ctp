@@ -35,4 +35,4 @@
   ) ?>
   </ul>
 </div>
-<a href="/cake3app/articles"><?= $this->RgbText->blueString('※トップページに戻る') ?></a>
+<?= $this->RgbText->blueLink('※トップページに戻る', '/') ?></a>
