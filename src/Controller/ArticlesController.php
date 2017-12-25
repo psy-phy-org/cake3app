@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Validation\Validator;
 
 class ArticlesController extends AppController
 {
@@ -16,8 +17,15 @@ class ArticlesController extends AppController
     {
         if ($this->request->is('post')) {
             $article = $this->Articles->newEntity($this->request->data);
-            if ($this->Articles->save($article)) {
-                $this->redirect(['action' => 'index']);
+            $validator = new Validator();
+            $validator->email('name');
+            $errors = $validator->errors($this->request->data);
+            if (!empty($errors)) {
+                $this->Flash->error('EMAIL ERROR!!');
+            } else {
+                if ($this->Articles->save($article)) {
+                    $this->redirect(['action' => 'index']);
+                }
             }
             $this->set('entity', $article);
         }
