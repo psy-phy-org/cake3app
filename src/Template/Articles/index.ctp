@@ -14,6 +14,7 @@
         $obj['id'],
         $this->Html->link($obj['person']['name'], ['action' => 'show2', $obj['person_id']]),
         $this->Html->link($obj['title'], ['action' => 'show', $obj['id']]),
+        $obj['person']['comment']
     ],
     ['style' => 'color: #000066; background-color: #CCCCFF'],
     ['style' => 'color: #006600; background-color: #EEFFEE'],

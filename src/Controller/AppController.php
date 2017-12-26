@@ -51,6 +51,7 @@ class AppController extends Controller
         //$this->loadComponent('Security');
         //$this->loadComponent('Csrf');
 
+        /*
         $this->loadComponent('Auth', [
             'authorize' => ['Controller'],
             'authenticate' => [
@@ -71,5 +72,6 @@ class AppController extends Controller
             ],
             'authError' => 'ログインしてください。',
         ]);
+        */
     }
 }

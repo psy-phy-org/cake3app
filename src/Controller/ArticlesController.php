@@ -23,21 +23,15 @@ class ArticlesController extends AppController
         $this->person = TableRegistry::get('Persons');
         $this->loadComponent('Paginator');
         $this->loadComponent('RequestHandler');
+        $this->loadComponent('DataArray');
     }
 
     public function index()
     {
-        if ($this->RequestHandler->isRss()) {
-            $data = $this->Articles
-                ->find()
-                ->limit(10)
-                ->order(['id' => 'DESC']);
-            $this->set(compact('data'));
-        } else {
-            $data = $this->paginate($this->Articles);
-            $this->set('data', $data);
-            $this->set('count', $data->count());
-        }
+        $data = $this->paginate($this->Articles);
+        $this->set('data', $this->DataArray->getMergedArray($data));
+        $this->set('count', $data->count());
+        // var_dump($this->DataArray->getMergedArray($data));
     }
 
     public function add()
