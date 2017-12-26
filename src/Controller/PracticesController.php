@@ -1,34 +1,30 @@
 <?php
 namespace App\Controller;
 
-use Cake\Event\Event;
-use Cake\Event\EventManager;
-use Cake\Network\Exception\InvalidCsrfTokenException;
-
 class PracticesController extends AppController
 {
-    public function beforeFilter(Event $event)
-    {
-        $this->eventManager()->off($this->Csrf);
-    }
-
     public function initialize()
     {
         $this->name = 'Practices';
-        $this->loadComponent('Flash');
-        $this->loadComponent('Csrf');
+        $this->loadComponent('Cookie');
+        $this->Cookie->config('path', '/');
+        $this->Cookie->config('domain', 'localhost');
+        $this->Cookie->config('expires', 0);
+        $this->Cookie->config('secure', false);
+        $this->Cookie->config('httpOnly', true);
+        $this->Cookie->config('encryption', false);
     }
 
     public function index()
     {
-        if ($this->request->is('post')) {
-            if (!empty($this->request->data['name']) && !empty($this->request->data['password'])) {
-                $this->Flash->success('OK');
-            } else {
-                $this->Flash->error('bad...');
-            }
-        } else {
-            $this->Flash->info('Please input form:');
-        }
+        $data = $this->Cookie->read('mykey');
+        $this->set('data', $data);
+    }
+
+    public function write()
+    {
+        $val = $this->request->query['val'];
+        $this->Cookie->write('mykey', $val);
+        $this->redirect(['action' => 'index']);
     }
 }
