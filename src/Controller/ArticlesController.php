@@ -28,10 +28,7 @@ class ArticlesController extends AppController
 
     public function index()
     {
-        $data = $this->paginate($this->Articles);
-        $this->set('data', $this->DataArray->getMergedArray($data));
-        $this->set('count', $data->count());
-        // var_dump($this->DataArray->getMergedArray($data));
+        $this->set('data', $this->DataArray->getMergedArray('articles'));
     }
 
     public function add()
