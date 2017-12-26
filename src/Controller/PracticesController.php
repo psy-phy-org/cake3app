@@ -1,30 +1,31 @@
 <?php
 namespace App\Controller;
 
+use Cake\Event\Event;
+
 class PracticesController extends AppController
 {
     public function initialize()
     {
         $this->name = 'Practices';
-        $this->loadComponent('Cookie');
-        $this->Cookie->config('path', '/');
-        $this->Cookie->config('domain', 'localhost');
-        $this->Cookie->config('expires', 0);
-        $this->Cookie->config('secure', false);
-        $this->Cookie->config('httpOnly', true);
-        $this->Cookie->config('encryption', false);
+        parent::initialize();
+        $this->loadComponent('Security');
+    }
+
+    public function beforeFilter(Event $event)
+    {
+        $this->Security->config('blackHoleCallback', 'blackhole');
+        $this->Security->requireSecure('index');
     }
 
     public function index()
     {
-        $data = $this->Cookie->read('mykey');
-        $this->set('data', $data);
     }
 
-    public function write()
+    public function blackhole()
     {
-        $val = $this->request->query['val'];
-        $this->Cookie->write('mykey', $val);
-        $this->redirect(['action' => 'index']);
+        echo "<html><head><title>ERROR</title></head>";
+        echo '<h1>SECURITY ERROR!!!</h1></body></html>';
+        exit;
     }
 }
