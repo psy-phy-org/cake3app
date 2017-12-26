@@ -21,7 +21,7 @@ class NextBoardsController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['ParentNextBoards', 'People']
+            'contain' => ['ParentNextBoards', 'Persons']
         ];
         $nextBoards = $this->paginate($this->NextBoards);
 
@@ -39,7 +39,7 @@ class NextBoardsController extends AppController
     public function view($id = null)
     {
         $nextBoard = $this->NextBoards->get($id, [
-            'contain' => ['ParentNextBoards', 'People', 'ChildNextBoards']
+            'contain' => ['ParentNextBoards', 'Persons']
         ]);
 
         $this->set('nextBoard', $nextBoard);
@@ -64,8 +64,8 @@ class NextBoardsController extends AppController
             $this->Flash->error(__('The next board could not be saved. Please, try again.'));
         }
         $parentNextBoards = $this->NextBoards->ParentNextBoards->find('list', ['limit' => 200]);
-        $people = $this->NextBoards->People->find('list', ['limit' => 200]);
-        $this->set(compact('nextBoard', 'parentNextBoards', 'people'));
+        $person = $this->NextBoards->Persons->find('list', ['limit' => 200]);
+        $this->set(compact('nextBoard', 'parentNextBoards', 'person'));
         $this->set('_serialize', ['nextBoard']);
     }
 
@@ -91,8 +91,8 @@ class NextBoardsController extends AppController
             $this->Flash->error(__('The next board could not be saved. Please, try again.'));
         }
         $parentNextBoards = $this->NextBoards->ParentNextBoards->find('list', ['limit' => 200]);
-        $people = $this->NextBoards->People->find('list', ['limit' => 200]);
-        $this->set(compact('nextBoard', 'parentNextBoards', 'people'));
+        $person = $this->NextBoards->Persons->find('list', ['limit' => 200]);
+        $this->set(compact('nextBoard', 'parentNextBoards', 'person'));
         $this->set('_serialize', ['nextBoard']);
     }
 

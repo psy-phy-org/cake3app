@@ -8,13 +8,9 @@
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('Edit Next Board'), ['action' => 'edit', $nextBoard->id]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete Next Board'), ['action' => 'delete', $nextBoard->id], ['confirm' => __('Are you sure you want to delete # {0}?', $nextBoard->id)]) ?> </li>
+        <li><?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $nextBoard->id], ['confirm' => __('Are you sure you want to delete # {0}?', $nextBoard->id)]) ?> </li>
         <li><?= $this->Html->link(__('List Next Boards'), ['action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New Next Board'), ['action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Parent Next Boards'), ['controller' => 'NextBoards', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Parent Next Board'), ['controller' => 'NextBoards', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Child Next Boards'), ['controller' => 'NextBoards', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Child Next Board'), ['controller' => 'NextBoards', 'action' => 'add']) ?> </li>
     </ul>
 </nav>
 <div class="nextBoards view large-9 medium-8 columns content">

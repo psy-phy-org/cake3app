@@ -9,9 +9,7 @@ use Cake\Validation\Validator;
 /**
  * NextBoards Model
  *
- * @property \App\Model\Table\NextBoardsTable|\Cake\ORM\Association\BelongsTo $ParentNextBoards
- * @property \App\Model\Table\PeopleTable|\Cake\ORM\Association\BelongsTo $People
- * @property \App\Model\Table\NextBoardsTable|\Cake\ORM\Association\HasMany $ChildNextBoards
+ * @property \App\Model\Table\PersonsTable|\Cake\ORM\Association\BelongsTo $Persons
  *
  * @method \App\Model\Entity\NextBoard get($primaryKey, $options = [])
  * @method \App\Model\Entity\NextBoard newEntity($data = null, array $options = [])
@@ -36,24 +34,15 @@ class NextBoardsTable extends Table
     {
         parent::initialize($config);
 
-        $this->setTable('next_boards');
-        $this->setDisplayField('title');
-        $this->setPrimaryKey('id');
-
         $this->addBehavior('Tree');
+
 
         $this->belongsTo('ParentNextBoards', [
             'className' => 'NextBoards',
             'foreignKey' => 'parent_id'
         ]);
-        $this->belongsTo('People', [
-            'foreignKey' => 'person_id',
-            'joinType' => 'INNER'
-        ]);
-        $this->hasMany('ChildNextBoards', [
-            'className' => 'NextBoards',
-            'foreignKey' => 'parent_id'
-        ]);
+
+        $this->belongsTo('Persons');
     }
 
     /**
@@ -65,21 +54,17 @@ class NextBoardsTable extends Table
     public function validationDefault(Validator $validator)
     {
         $validator
-            ->integer('id')
-            ->allowEmpty('id', 'create');
-
+            ->integer('id');
         $validator
-            ->scalar('title')
-            ->maxLength('title', 255)
-            ->requirePresence('title', 'create')
+            ->requirePresence('parent_id');
+        $validator
+            ->requirePresence('person_id');
+        $validator
+            ->requirePresence('title')
             ->notEmpty('title');
-
         $validator
-            ->scalar('content')
-            ->maxLength('content', 255)
-            ->requirePresence('content', 'create')
+            ->requirePresence('content')
             ->notEmpty('content');
-
         return $validator;
     }
 
@@ -92,8 +77,7 @@ class NextBoardsTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['parent_id'], 'ParentNextBoards'));
-        $rules->add($rules->existsIn(['person_id'], 'People'));
+        $rules->add($rules->existsIn(['person_id'], 'Persons'));
 
         return $rules;
     }

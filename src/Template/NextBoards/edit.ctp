@@ -14,8 +14,7 @@
             )
         ?></li>
         <li><?= $this->Html->link(__('List Next Boards'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Parent Next Boards'), ['controller' => 'NextBoards', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Parent Next Board'), ['controller' => 'NextBoards', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('New Next Board'), ['action' => 'add']) ?></li>
     </ul>
 </nav>
 <div class="nextBoards form large-9 medium-8 columns content">
@@ -24,7 +23,7 @@
         <legend><?= __('Edit Next Board') ?></legend>
         <?php
             echo $this->Form->control('parent_id', ['options' => $parentNextBoards]);
-            echo $this->Form->control('person_id');
+            echo $this->Form->control('person_id', ['options' => $person]);
             echo $this->Form->control('title');
             echo $this->Form->control('content');
         ?>
