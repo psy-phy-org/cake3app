@@ -1,10 +1,17 @@
 <?php
 namespace App\Controller;
 
+use Cake\Event\Event;
+use Cake\Event\EventManager;
 use Cake\Network\Exception\InvalidCsrfTokenException;
 
 class PracticesController extends AppController
 {
+    public function beforeFilter(Event $event)
+    {
+        $this->eventManager()->off($this->Csrf);
+    }
+
     public function initialize()
     {
         $this->name = 'Practices';
