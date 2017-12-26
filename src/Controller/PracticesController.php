@@ -14,18 +14,14 @@ class PracticesController extends AppController
 
     public function beforeFilter(Event $event)
     {
-        $this->Security->config('blackHoleCallback', 'blackhole');
-        $this->Security->requireSecure('index');
+        if ($this->RequestHandler->isMobile()) {
+            echo 'Mobile';
+        } else {
+            echo 'NOT Mobile';
+        }
     }
 
     public function index()
     {
-    }
-
-    public function blackhole()
-    {
-        echo "<html><head><title>ERROR</title></head>";
-        echo '<h1>SECURITY ERROR!!!</h1></body></html>';
-        exit;
     }
 }
