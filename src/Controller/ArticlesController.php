@@ -5,6 +5,7 @@ use App\Controller\AppController;
 use Cake\ORM\TableRegistry;
 use Cake\Validation\Validator;
 use Cake\I18n\I18n;
+use Cake\Event\Event;
 
 class ArticlesController extends AppController
 {
@@ -17,6 +18,12 @@ class ArticlesController extends AppController
         'contain' => ['Persons']
     ];
 
+    public function beforeFilter(Event $event)
+    {
+        parent::beforeFilter($event);
+        I18n::locale('ja');
+    }
+
     public function initialize()
     {
         parent::initialize();
@@ -28,7 +35,9 @@ class ArticlesController extends AppController
 
     public function index()
     {
-        $this->set('data', $this->DataArray->getMergedArray('articles'));
+        $data = $this->paginate($this->Articles);
+        $this->set(compact('data'));
+        $this->set('count', $data->count());
     }
 
     public function add()

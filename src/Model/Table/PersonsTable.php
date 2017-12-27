@@ -10,6 +10,7 @@ class PersonsTable extends Table
     public function initialize(array $config)
     {
         $this->hasMany('Articles');
+        $this->addBehavior('Translate', ['fields' => ['name']]);
     }
 
     public function validationDefault(Validator $validator)

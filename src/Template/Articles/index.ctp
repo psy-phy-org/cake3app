@@ -1,24 +1,40 @@
 <h1><?= $this->RgbText->redString('掲示板') ?></h1>
-<p><a href="articles/add"><?= $this->RgbText->greenString('投稿する') ?></a></p>
+<p><?= $this->RgbText->greenLink('※投稿する', '/articles/add') ?></a></p>
+<p><?= __('{0} post', $count) ?></p>
 <div>
 <table>
-<?php $flg = true ?>
-<?php foreach ($marged as $arr): ?>
-<?php if ($flg) : ?>
-  <tr>
-<?php foreach ($arr as $key => $item): ?>
-    <th><?= $key ?></th>
-<?php endforeach; ?>
-  </tr>
-<?php $flg = false; ?>
-<?php endif; ?>
-  <tr>
-<?php foreach ($arr as $item): ?>
-    <td><?= $item ?></td>
-<?php endforeach; ?>
-  </tr>
+<tr>
+  <th>id</th>
+  <th>name</th>
+  <th>title</th>
+</tr>
+
+<?php foreach ($data as $obj): ?>
+<?= $this->Html->tableCells(
+    [
+        $obj['id'],
+        $this->Html->link($obj['person']['name'], ['action' => 'show2', $obj['person_id']]),
+        $this->Html->link($obj['title'], ['action' => 'show', $obj['id']]),
+    ],
+    ['style' => 'color: #000066; background-color: #CCCCFF'],
+    ['style' => 'color: #006600; background-color: #EEFFEE'],
+    false,
+    true
+) ?>
 <?php endforeach; ?>
 </table>
 </div>
-<?= $this->RgbText->blueLink('※トップページに戻る', '/') ?></a>
-<?= $this->element('sampleBanner') ?>
+<div class="paginator">
+  <ul class="pagination">
+  <?= $this->Paginator->numbers(
+    [
+        'before' => $this->Paginator->hasPrev() ? $this->Paginator->first('<<').'・' : '',
+        'after' => $this->Paginator->hasNext() ? '・'. $this->Paginator->last('>>') : '',
+        'modulus' => 4,
+        'separator' => '・'
+    ]
+  ) ?>
+  </ul>
+</div>
+<?= $this->RgbText->blueLink('トップページに戻る', '/articles') ?>
+<?= $this->element('SampleBanner'); ?>
