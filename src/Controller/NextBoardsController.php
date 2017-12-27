@@ -115,4 +115,43 @@ class NextBoardsController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+
+    public function show($id = null)
+    {
+        if (empty($id)) {
+            $this->getTreeBoard(0);
+        } else {
+            $this->getTreeBoard($id);
+        }
+    }
+
+    public function getTreeBoard($id)
+    {
+        if ($id != 0) {
+            $data = $this->NextBoards
+                ->find()
+                ->where(['NextBoards.id' => $id])
+                ->contain(['Persons']);
+            $this->set('data', $data);
+            if (!empty($data)) {
+                $child = $this->NextBoards
+                    ->find('children', ['for' => $id], false)
+                    ->find('threaded')
+                    ->contain(['Persons']);
+                $this->set('child', $child);
+            }
+        } else {
+            $query = $this->NextBoards
+                ->find(
+                    'treeList',
+                    ['keyPath' => 'id', 'valuePath' => 'title', 'spacer' => '　　']
+                );
+            $this->set('query', $query);
+            $child = $this->NextBoards
+                ->find()
+                ->where(['parent_id' => 0])
+                ->contain(['Persons']);
+            $this->set('child', $child);
+        }
+    }
 }
