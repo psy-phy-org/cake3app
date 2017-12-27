@@ -15,7 +15,8 @@ class PracticesController extends AppController
 
     public function index()
     {
-        $data = $this->articles->anyData();
+        $data = $this->articles
+            ->find('something', ['field'=>'title','value'=>'%hello%']);
         $this->set('data', $data);
     }
 }
