@@ -10,7 +10,7 @@ class ArticlesTable extends Table
     public function initialize(array $config)
     {
         $this->belongsTo('Persons');
-        $this->addBehavior('Translate', ['fields' => ['title']]);
+        $this->addBehavior('SuperTable');
     }
 
     public function validationDefault(Validator $validator)
